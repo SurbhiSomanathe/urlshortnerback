@@ -38,13 +38,7 @@ const registerUser = async (req, res, next) => {
       token: generateToken(user._id),
     });
 
-    // transporter.sendMail({
-    //   to: user.email,
-    //   from: "awsuriya@gmail.com",
-    //   subject: "signup success",
-    //   html: "<h1>welcome to task 44</h1>",
-    // });
-  } else {
+      } else {
     res.status(400);
     console.log("failed to create");
   }
@@ -55,7 +49,7 @@ const authUser = async (req, res) => {
   const user = await User.findOne({ email });
   try {
     if (user && (await user.matchPassword(password))) {
-      // console.log(enteredPassword, this.password);
+    
 
       res.json({
         _id: user._id,
@@ -106,7 +100,7 @@ const newpassword = async (req, res) => {
     if (!user) {
       return res.status(422).json({ error: "Try again session expired" });
     }
-    // bcrypt.hash(newPassword, 12).then((hashedpassword) => {
+    
     user.password = newPassword;
     user.resetToken = undefined;
     user.expireToken = undefined;
@@ -114,7 +108,7 @@ const newpassword = async (req, res) => {
       res.json({ message: "password updated success" });
     });
   });
-  // })
+
 };
 
 module.exports = { registerUser, authUser, forgotPassword, newpassword };

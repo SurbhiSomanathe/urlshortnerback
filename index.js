@@ -10,7 +10,7 @@ const userRouter = require("./routes/users");
 connectDb();
 app.use(cors({ origin: "*" }));
 app.use(express.urlencoded({ extended: false }));
-//app.use(express.json());
+
 app.use(express.json());
 app.get("/", async (req, res) => {
   const shortUrls = await url.find();
@@ -24,7 +24,7 @@ app.get("/:shortUrl", async (req, res) => {
   shortUrl.clicks++;
 
   shortUrl.save();
-  //problem here cannot send header something
+ 
   res.redirect("/");
 });
 
